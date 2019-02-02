@@ -25,7 +25,7 @@ app.get("/templates.htm", function(req, res) {
   res.sendFile(__dirname + '/templates.htm');
 });
 
-//The dynamically generated threads and thread content took so long I didn't have time to implement quite a lot of stuff 
+//The dynamically generated threads and thread content took so long I didn't have time to implement quite a lot of stuff
 
 // OBJECTS
 // USER - username(unique), forename, surname, password, admin, profile picture, join date
@@ -69,7 +69,7 @@ var thread2 = {
 };
 var people = [doctorwhocomposer,frankv];
 var threads = [thread1,thread2];
-
+var passwords = ["concertina"];
 //BASIC ROUTES TO COMPLY WITH TEST CASES
 //GET function returns list of users People as JSON
 app.get('/people', function(req, res){
@@ -86,8 +86,7 @@ app.get('/people/:username', function(req, res){
 
 //POST adduser, only used to pass preset tests, /adduser handles actual user addition as it is a multipart form
 app.post('/people',function(req, res){
-  console.log(req.headers);
-  if (req.headers.access_token == 'concertina'){
+  if (passwords.includes(req.headers.access_token)){
     console.log('access OK');
     var username = req.headers.username;
     if (!people.find(x => x.username === username)){
@@ -163,7 +162,7 @@ app.get('/forum/:id', function(req, res){
 //headers: access_token, title, username, content,
 app.post('/forum',function(req, res){
   var obj = JSON.parse(req.body);
-  if (obj.access_token == 'concertina'){
+  if (passwords.includes(obj.access_token)){
     console.log('access OK');
     var title = obj.title;
     if (!threads.find(x => x.title === title)){
@@ -195,7 +194,7 @@ app.post('/forum',function(req, res){
 //headers: access_token, username, content,
 app.post('/forum/:id',function(req, res){
   var obj = JSON.parse(req.body);
-  if (obj.access_token == 'concertina'){
+  if (passwords.includes(obj.access_token)){
     var thread = (threads.find(x => x.id == req.params.id));
     if (thread){  //check thread exists
       var creator = (people.find(x => x.username == obj.username));
@@ -232,7 +231,9 @@ app.post('/adduser',upload.single('image'), function(req, res){
       forename: forename,
       surname: surname,
     };
+    var pass = req.body.passcode;
     people.push(newUser);
+    passwords.push(pass);
     res.redirect('/');
     //res.send("User " + username + " has been added.");
   }
