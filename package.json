@@ -1,0 +1,23 @@
+{
+  "name": "webprogramming",
+  "version": "1.0.0",
+  "description": "WebDev assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon index.js"
+  },
+  "author": "Francisco Vasconcelos",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "form-data": "^2.3.3",
+    "fs": "0.0.1-security",
+    "multer": "^1.4.1"
+  },
+  "devDependencies": {
+    "jest": "^24.0.0",
+    "jest-cli": "^23.6.0"
+  }
+}

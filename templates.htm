@@ -1,0 +1,43 @@
+<!--Template for thread block-->
+<script id="thread-template" type="x-tmpl-mustache">
+  <div class="container-fluid border" >
+    <div id="header{{threadID}}" href="" data-toggle="collapse" data-target="#thread{{threadID}}" onclick="loadThread({{threadID}})">
+      <div class="row no-gutters">
+        <div class="col-sm-6">{{threadTitle}}</div>
+        <div class="col-sm-2">{{creator}}</div>
+        <div class="col-sm-1">{{dateCreated}}</div>
+        <div class="col-sm-2">{{updater}}</div>
+        <div class="col-sm-1">{{dateUpdated}}</div>
+      </div>
+    </div>
+    <div id="thread{{threadID}}" class="panel-collapse collapse"></div>
+  </div>
+</script>
+
+<!--Template for individual post-->
+<script id="post-template" type="x-tmpl-mustache">
+  <div class="row border" style="background-color:rgba(27, 26, 29, 0.04)">
+    <div class="col-sm-3 border">
+      <div>{{posterUsername}}</div>
+      <div> <img src="{{href}}/pics/{{posterUsername}}.jpg" alt="{{posterUsername}}'s profile picture'" style="width:256px;height:256px;" class="rounded mx-auto d-block img-fluid"> </div><br>
+    </div>
+    <div class="col-sm-9 border">
+      <div>{{postDate}}</div>
+      <div style="word-wrap: break-word;">{{{postContent}}}</div>
+    </div>
+  </div>
+</script>
+<!--Template for posting interface-->
+<script id="postUI-template" type="x-tmpl-mustache">
+  <div id="thread{{id}}Form">
+    <textarea name="content" id="editor{{id}}"></textarea><br>
+    <form id="" class="form-inline" action="">
+      <label for="username" class="mr-sm-2">Username:</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" name="username" id="username{{id}}">
+
+      <label for="access_token" class="mr-sm-2">Code:</label>
+      <input type="password" class="form-control mb-2 mr-sm-2" name="access_token" id="access_token{{id}}">
+      <div id="submit{{id}}" class="btn btn-secondary mb-2" onclick="sendPost({{id}})">Post</div>
+    </form>
+  </div><br>
+</script>
