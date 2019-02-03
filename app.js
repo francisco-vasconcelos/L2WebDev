@@ -7,7 +7,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json());
 var multer = require('multer');
 var storage = multer.diskStorage({
-  destination: 'pics/',
+  destination: __dirname +'/pics/',
   filename: function (req, file, cb) {
     cb(null, req.body.username + '.jpg')
   }
